@@ -32,6 +32,6 @@ Anthony Pottebaum
 
 ### Links:
 ***
-GitHub Repository: https://github.com/Wizzle13/The-JavaScript-Quiz
+GitHub Repository: https://github.com/Wizzle13/Pokemon-Project
 
-GitHub URL:https://wizzle13.github.io/The-JavaScript-Quiz/
+GitHub URL: https://wizzle13.github.io/Pokemon-Project/

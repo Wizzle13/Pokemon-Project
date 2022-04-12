@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/js/script.js">
     <!--milligram stylesheet link-->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-    <h1>Who's that Pokémon?</h1>
-        <img src="./pokemontemplate.png" alt="Who's that Pokémon?">
     </head>
   <body>
-    <h2>Pokémon Quiz</h2>
-    <p1>Test your Pokémon skills with this timed 10 question quiz!</p1>
-    <p2>
-        <button class="button button-outline">Start Quiz</button>
-        <button class="button button-outline">Highscores</button>
-    </p2>
+      <header>
+<div class="highscores">
+    <a href="https://miro.medium.com/max/920/0*UG2Qdz-kxTHGCya3.jpg"><input class="button button-clear" type="submit" value="Highscores"></a>
+    
+</div>
+</header>
+
+
+    <h1>Pokémon Quiz</h1>
+    <h2>Who's that Pokémon?</h2>
+    <div class="video">
+    <video width="500" height="300" controls autoplay loop muted>
+        <source src="./assets/images/pokemon1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div id="test">
+    <p1 >Test your Pokémon skills with this timed 10 question quiz!</p1>
+    </div>
+    <div id="start">
+        <a href="https://static.wikia.nocookie.net/pokemon/images/4/49/Ash_Pikachu.png/revision/latest?cb=20200405125039"><button id="Start" class="button button-outline">Start Quiz</button></a>
+    </div>
   </body>
   <footer>
       <a href="https://github.com/Wizzle13/Pokemon-Project.git">Github</a>

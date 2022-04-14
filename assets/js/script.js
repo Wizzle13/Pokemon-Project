@@ -20,7 +20,7 @@ startBtn.addEventListener("click", function(){
             var name = data.name;
             var pokeSprite = data.sprites.front_shiny;
             document.querySelector('video').style.visibility='hidden';
-            document.querySelector('image').innerHTML=`<img src = ${pokeSprite}>`
+            document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
         }); 
     });
 })

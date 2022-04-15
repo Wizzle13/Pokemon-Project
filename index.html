@@ -15,7 +15,9 @@
 </head>
 <header>
     <div class="highscores">
-        <a href="https://miro.medium.com/max/920/0*UG2Qdz-kxTHGCya3.jpg"><input class="button button-clear" type="submit" value="Highscores"></a>
+        
+            <input class="button button-clear" type="submit" id="highScore" value="Highscores">
+        
     </div>
 </header>
 <main>
@@ -40,6 +42,19 @@
     <div id="start">
         <button id="startBtn" class="button button-outline">Start Quiz</button>
     </div>
+
+    <!-- The Modal -->
+    <div id="highScoreModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>High Score</h1>
+      <p>ABC 1,000,000 pts</p>
+      <p>DEF  900,000 pts</p>
+    </div>
+  
+  </div>
 </main>
 <footer>
     <a href="https://github.com/Wizzle13/Pokemon-Project.git">Github</a>

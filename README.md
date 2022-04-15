@@ -17,6 +17,7 @@ Christopher Lee
 
 Anthony Pottebaum
 
+![GitHub Contributors Image](https://contrib.rocks/image?repo=Wizzle13/Pokemon-Project)
 
 
 ## Languages and tool used for this project:

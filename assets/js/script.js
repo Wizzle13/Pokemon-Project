@@ -18,7 +18,7 @@ var anwserLocaton = function(){
 }    
 // create high score page
 // Get the modal
-var modal = document.getElementById("highScoreModal");
+var modalHS = document.getElementById("highScoreModal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("highScore");
@@ -28,18 +28,18 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-  modal.style.display = "block";
+  modalHS.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  modal.style.display = "none";
+  modalHS.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modalHS) {
+    modalHS.style.display = "none";
   }
 }
 
@@ -50,6 +50,7 @@ window.onclick = function(event) {
 startBtn.addEventListener("click", function(){
     fetch(apiUrl).then(function(response){
         response.json().then(function(data){
+            console.log(apiUrl);
             console.log(data.name);
             console.log(data.sprites.front_shiny);
             var name = data.name;

@@ -1,11 +1,11 @@
 var score = 0;
 var time = 10;
 var startBtn = document.getElementById('startBtn');
-var numAnwsers = 4;
-var count = numAnwsers + 1;
+var numAnswers = 4;
+var count = numAnswers + 1;
 var pokemonId = 1;
 var sprite = 1;
-var pokeAnwser = document.querySelector("#anwserSection");
+var pokeAnswer = document.querySelector("#answerSection");
 var anwLoc = 0;
 
 
@@ -14,10 +14,10 @@ var getPokemon = function(){
     var randomPokemon = Math.floor(Math.random() * 149) + 1;
     pokemonId = randomPokemon;
 }
-// randomly where correct anwser is
-var anwserLocaton = function(){
-    anwLoc = Math.floor(Math.random() * numAnwsers) + 1;
-    console.log("correct Anwser = " + anwLoc);
+// randomly where correct answer is
+var answerLocaton = function(){
+    anwLoc = Math.floor(Math.random() * numAnswers) + 1;
+    console.log("correct Answer = " + anwLoc);
 }    
 // create high score page
 // Get the modal
@@ -56,38 +56,37 @@ var startQuiz = function() {
       // console.log(data.name);
       // console.log(data.sprites.front_shiny);
       var name = data.name;
-      anwserLocaton();
+      answerLocaton();
       var pokeSprite = data.sprites.front_shiny;
       document.querySelector('video').style.visibility='hidden';
       document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
-      for(var i = 1; i < numAnwsers; i++){
+      // loops to pull a select number of pokemon
+      for(var i = 1; i < count; i++){
         
         console.log("i= "+ i + ", " + anwLoc );
-        if(i === anwLoc){
-          console.log("correct Anwser= "+ name);
-          console.log("i= "+ i + ", " + anwLoc );
-          $(pokeAnwser).append (
+        if(i == anwLoc){
+          // appends the correct answer to the quiz
+          console.log("i= "+ i + ", " + anwLoc + " correct Answer= "+ name);
+          $(pokeAnswer).append (
           "<div><input type='radio' id = " + name + "name='pmon' value = " + name + "><lable> " + name + "</lable></div>"
           );
-          i++;
+          
         } 
-        if(i !== anwLoc){
+        else if(i !== anwLoc){
+          // selects and display the other wrong answers
           getPokemon();
           
           var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
           fetch(apiUrl).then(function(response){
             response.json().then(function(data){
-              console.log("wrong Anwser= " + data.name);
-              console.log("i = " + i + ", " + anwLoc );
-              $(pokeAnwser).append (
+              console.log("i = " + i + ", " + anwLoc +" wrong Answer= " + data.name );
+              $(pokeAnswer).append (
                 "<div><input type='radio' id = " + data.name + "name='pmon' value = " + data.name + "><lable> " + data.name + "</lable></div>"
                 );
             });
           });
-          
         };
       };
-              
     }); 
   });
 }

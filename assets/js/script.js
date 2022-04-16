@@ -1,7 +1,8 @@
 var score = 0;
 var time = 10;
 var startBtn = document.getElementById('startBtn');
-var numAnwsers = "2"
+var numAnwsers = 4
+var count = numAnwsers + 1;
 var pokemonId = 1;
 var sprite = 1
 
@@ -14,7 +15,7 @@ var getPokemon = function(){
 // randomly where correct anwser is
 var anwserLocaton = function(){
     var anwLoc = Math.floor(Math.random() * numAnwsers) + 1;
-    console.log(anwLoc);
+    console.log("correct Anwser = " + anwLoc);
 }    
 // create high score page
 // Get the modal
@@ -50,15 +51,32 @@ var startQuiz = function() {
   var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
   fetch(apiUrl).then(function(response){
     response.json().then(function(data){
-        
-        console.log(data.name);
-        console.log(data.sprites.front_shiny);
-        var name = data.name;
-        var pokeSprite = data.sprites.front_shiny;
-        document.querySelector('video').style.visibility='hidden';
-        document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
+      // console.log(data.name);
+      // console.log(data.sprites.front_shiny);
+      var name = data.name;
+      anwserLocaton();
+      var pokeSprite = data.sprites.front_shiny;
+      document.querySelector('video').style.visibility='hidden';
+      document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
+      
+      for(var i = 1; i < count; i++) {
+        console.log("i= "+ i);
+        if(i === numAnwsers){
+          console.log("correct Anwser= "+ name);
+        }
+        else {
+          getPokemon();
+          
+          var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+          fetch(apiUrl).then(function(response){
+            response.json().then(function(data){
+              console.log("wrong Anwser= "+ data.name);
+            });
+          });
+        };
+      };        
     }); 
-});
+  });
 }
 
 

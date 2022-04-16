@@ -5,7 +5,7 @@ var numAnwsers = 4
 var count = numAnwsers + 1;
 var pokemonId = 1;
 var sprite = 1
-
+var pokeAnwser = document.querySelector("#anwserSection");
 
 // randomly get pokemon
 var getPokemon = function(){
@@ -59,20 +59,31 @@ var startQuiz = function() {
       document.querySelector('video').style.visibility='hidden';
       document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
       
-      for(var i = 1; i < count; i++) {
-        console.log("i= "+ i);
+      for(var i = 1; i < count;){
+        
+        console.log("i= "+ i + ", " + numAnwsers );
         if(i === numAnwsers){
           console.log("correct Anwser= "+ name);
-        }
-        else {
+          console.log("i= "+ i + ", " + numAnwsers );
+          $(pokeAnwser).append (
+          "<div><input type='radio' id = "+ name + "name='pmon' value = "+name+"><lable> "+ name +"</lable></div>"
+          );
+          i++;
+        } 
+        else{
           getPokemon();
           
           var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
           fetch(apiUrl).then(function(response){
             response.json().then(function(data){
               console.log("wrong Anwser= "+ data.name);
+              console.log("i= "+ i + ", " + numAnwsers );
+              $(pokeAnwser).append (
+                "<div><input type='radio' id = "+ data.name + "name='pmon' value = "+ data.name +"><lable> "+ data.name +"</lable></div>"
+                );
             });
           });
+          i++;
         };
       };        
     }); 

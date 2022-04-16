@@ -1,11 +1,13 @@
 var score = 0;
 var time = 10;
 var startBtn = document.getElementById('startBtn');
-var numAnwsers = 4
+var numAnwsers = 4;
 var count = numAnwsers + 1;
 var pokemonId = 1;
-var sprite = 1
+var sprite = 1;
 var pokeAnwser = document.querySelector("#anwserSection");
+var anwLoc = 0;
+
 
 // randomly get pokemon
 var getPokemon = function(){
@@ -14,7 +16,7 @@ var getPokemon = function(){
 }
 // randomly where correct anwser is
 var anwserLocaton = function(){
-    var anwLoc = Math.floor(Math.random() * numAnwsers) + 1;
+    anwLoc = Math.floor(Math.random() * numAnwsers) + 1;
     console.log("correct Anwser = " + anwLoc);
 }    
 // create high score page
@@ -58,37 +60,38 @@ var startQuiz = function() {
       var pokeSprite = data.sprites.front_shiny;
       document.querySelector('video').style.visibility='hidden';
       document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
-      
-      for(var i = 1; i < count;){
+      for(var i = 1; i < numAnwsers; i++){
         
-        console.log("i= "+ i + ", " + numAnwsers );
-        if(i === numAnwsers){
+        console.log("i= "+ i + ", " + anwLoc );
+        if(i === anwLoc){
           console.log("correct Anwser= "+ name);
-          console.log("i= "+ i + ", " + numAnwsers );
+          console.log("i= "+ i + ", " + anwLoc );
           $(pokeAnwser).append (
-          "<div><input type='radio' id = "+ name + "name='pmon' value = "+name+"><lable> "+ name +"</lable></div>"
+          "<div><input type='radio' id = " + name + "name='pmon' value = " + name + "><lable> " + name + "</lable></div>"
           );
           i++;
         } 
-        else{
+        if(i !== anwLoc){
           getPokemon();
           
           var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
           fetch(apiUrl).then(function(response){
             response.json().then(function(data){
-              console.log("wrong Anwser= "+ data.name);
-              console.log("i= "+ i + ", " + numAnwsers );
+              console.log("wrong Anwser= " + data.name);
+              console.log("i = " + i + ", " + anwLoc );
               $(pokeAnwser).append (
-                "<div><input type='radio' id = "+ data.name + "name='pmon' value = "+ data.name +"><lable> "+ data.name +"</lable></div>"
+                "<div><input type='radio' id = " + data.name + "name='pmon' value = " + data.name + "><lable> " + data.name + "</lable></div>"
                 );
             });
           });
-          i++;
+          
         };
-      };        
+      };
+              
     }); 
   });
 }
+
 
 
 startBtn.addEventListener("click", function(){

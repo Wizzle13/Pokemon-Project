@@ -4,12 +4,12 @@ var startBtn = document.getElementById('startBtn');
 var numAnwsers = "4"
 var pokemonId = 1;
 var sprite = 1
-var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+
 
 // randomly get pokemon
 var getPokemon = function(){
-    var randomNumber = Math.floor(Math.random() * 149) + 1;
-    console.log(randomNumber);
+    var randomPokemon = Math.floor(Math.random() * 149) + 1;
+    pokemonId = randomPokemon;
 }
 // randomly where correct anwser is
 var anwserLocaton = function(){
@@ -44,20 +44,26 @@ window.onclick = function(event) {
 }
 
 // create / cleanup game/start function
-
+var startQuiz = function() {
+  getPokemon();
+  
+  var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
+  fetch(apiUrl).then(function(response){
+    response.json().then(function(data){
+        
+        console.log(data.name);
+        console.log(data.sprites.front_shiny);
+        var name = data.name;
+        var pokeSprite = data.sprites.front_shiny;
+        document.querySelector('video').style.visibility='hidden';
+        document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
+    }); 
+});
+}
 
 
 startBtn.addEventListener("click", function(){
-    fetch(apiUrl).then(function(response){
-        response.json().then(function(data){
-            console.log(data.name);
-            console.log(data.sprites.front_shiny);
-            var name = data.name;
-            var pokeSprite = data.sprites.front_shiny;
-            document.querySelector('video').style.visibility='hidden';
-            document.getElementById('pokemonImage').setAttribute("src",pokeSprite)
-        }); 
-    });
+    startQuiz();
 })
 
 

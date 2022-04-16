@@ -1,7 +1,7 @@
 var score = 0;
 var time = 10;
 var startBtn = document.getElementById('startBtn');
-var numAnwsers = "4"
+var numAnwsers = "2"
 var pokemonId = 1;
 var sprite = 1
 
@@ -19,7 +19,7 @@ var anwserLocaton = function(){
 // create high score page
 // Get the modal
 var modalHS = document.getElementById("highScoreModal");
-
+var modalQuiz = document.getElementById("quizModal");
 // Get the button that opens the modal
 var btn = document.getElementById("highScore");
 
@@ -46,7 +46,7 @@ window.onclick = function(event) {
 // create / cleanup game/start function
 var startQuiz = function() {
   getPokemon();
-  
+  modalQuiz.style.display = "block";
   var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
   fetch(apiUrl).then(function(response){
     response.json().then(function(data){

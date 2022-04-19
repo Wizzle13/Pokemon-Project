@@ -104,13 +104,14 @@ var correctAnswer = function(event){
 }
 
 startBtn.addEventListener("click", function(){
-  // for(var q=0; q<10; q++) {
   startQuiz();
-// }
+
 })
-//submitBtn.addEventListener("click", function(){
-  //correctAnswer();
-//})
+
+submitBtn.addEventListener("click", function(event){
+  event.preventDefault();
+  correctAnswer();
+})
 
 
 

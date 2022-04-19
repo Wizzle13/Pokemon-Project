@@ -96,9 +96,10 @@ var correctAnswer = function(){
 }
 
 startBtn.addEventListener("click", function(){
-  for(var q=0; q<10;) {
+  // for(var q=0; q<10; q++) {
   startQuiz();
-}})
+// }
+})
 //submitBtn.addEventListener("click", function(){
   //correctAnswer();
 //})

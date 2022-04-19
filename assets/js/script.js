@@ -72,7 +72,7 @@ var startQuiz = function() {
           );
           
         } 
-        else if(i !== anwLoc){
+        else{
           // selects and display the other wrong answers
           getPokemon();
           
@@ -91,11 +91,17 @@ var startQuiz = function() {
   });
 }
 
-
+var correctAnswer = function(){
+  q++;
+}
 
 startBtn.addEventListener("click", function(){
-    startQuiz();
-})
+  for(var q=0; q<10;) {
+  startQuiz();
+}})
+//submitBtn.addEventListener("click", function(){
+  //correctAnswer();
+//})
 
 
 

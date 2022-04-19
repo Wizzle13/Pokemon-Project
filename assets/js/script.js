@@ -7,6 +7,7 @@ var pokemonId = 1;
 var sprite = 1;
 var pokeAnswer = document.querySelector("#answerSection");
 var anwLoc = 0;
+var questionCount = 0;
 
 
 // randomly get pokemon
@@ -91,8 +92,15 @@ var startQuiz = function() {
   });
 }
 
-var correctAnswer = function(){
-  q++;
+var correctAnswer = function(event){
+  // event.preventDefault();
+  if (questionCount <= 10) {
+    questionCount++;
+    document.getElementById('answerSection').innerHTML = "";
+    startQuiz();
+  } else {
+    
+  }
 }
 
 startBtn.addEventListener("click", function(){

@@ -8,7 +8,7 @@ var sprite = 1;
 var pokeAnswer = document.querySelector("#answerSection");
 var anwLoc = 0;
 var questionCount = 0;
-
+var PokeScore = [];
 
 // randomly get pokemon
 var getPokemon = function(){
@@ -18,7 +18,7 @@ var getPokemon = function(){
 // randomly where correct answer is
 var answerLocaton = function(){
     anwLoc = Math.floor(Math.random() * numAnswers) + 1;
-    console.log("correct Answer = " + anwLoc);
+    // console.log("correct Answer = " + anwLoc);
 }    
 // create high score page
 // Get the modal
@@ -64,10 +64,10 @@ var startQuiz = function() {
       // loops to pull a select number of pokemon
       for(var i = 1; i < count; i++){
         
-        console.log("i= "+ i + ", " + anwLoc );
+        // console.log("i= "+ i + ", " + anwLoc );
         if(i == anwLoc){
           // appends the correct answer to the quiz
-          console.log("i= "+ i + ", " + anwLoc + " correct Answer= "+ name);
+          // console.log("i= "+ i + ", " + anwLoc + " correct Answer= "+ name);
           $(pokeAnswer).append (
           "<div><input type='radio' id = " + name + "name='pmon' value = " + name + "><lable> " + name + "</lable></div>"
           );
@@ -80,7 +80,7 @@ var startQuiz = function() {
           var apiUrl = "https://pokeapi.co/api/v2/pokemon/" + pokemonId;
           fetch(apiUrl).then(function(response){
             response.json().then(function(data){
-              console.log("i = " + i + ", " + anwLoc +" wrong Answer= " + data.name );
+              // console.log("i = " + i + ", " + anwLoc +" wrong Answer= " + data.name );
               $(pokeAnswer).append (
                 "<div><input type='radio' id = " + data.name + "name='pmon' value = " + data.name + "><lable> " + data.name + "</lable></div>"
                 );
@@ -94,12 +94,27 @@ var startQuiz = function() {
 
 var correctAnswer = function(event){
   // event.preventDefault();
-  if (questionCount <= 10) {
+  if (questionCount < 10) {
     questionCount++;
     document.getElementById('answerSection').innerHTML = "";
     startQuiz();
   } else {
-    
+    document.getElementById('pokemonImage').setAttribute("src","");
+    document.getElementById('answerSection').innerHTML = "Congrat you completed the quiz! Here is your participation award.,<br><input type='input' name='HighScore' id ='HSI' />";
+    document.getElementById('submitBtn').innerHTML = "<button type='submit' id = 'submitHS'>Submit Score</button>"
+    submitBtn.addEventListener("click", function(event){
+      event.preventDefault();
+      var score = 11;
+      var initials = document.querySelector("input[name='HighScore']").value;
+      // writes initials and score to array and stores in localstorage
+      PokeScore.push ({
+        name: initials,
+        score: score
+      });
+      localStorage.setItem("Pokemon", JSON.stringify(PokeScore));
+      window.location.reload(true);
+      
+    })
   }
 }
 

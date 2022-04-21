@@ -105,13 +105,14 @@ var correctAnswer = function(event){
     submitBtn.addEventListener("click", function(event){
       event.preventDefault();
       var score = 11;
-      var initials = document.querySelector("input[name='HighScore']").value;
+      var initials = document.querySelector("input[name='HSI']").value;
       // writes initials and score to array and stores in localstorage
       PokeScore.push ({
         name: initials,
         score: score
       });
       localStorage.setItem("Pokemon", JSON.stringify(PokeScore));
+      modalQuiz.style.display = none;
       window.location.reload(true);
       
     })

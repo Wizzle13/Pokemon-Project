@@ -1,6 +1,7 @@
 var score = 0;
 var time = 10;
 var startBtn = document.getElementById('startBtn');
+var submitHs = document.getElementById('submitHs');
 var numAnswers = 4;
 var count = numAnswers + 1;
 var pokemonId = 1;
@@ -24,6 +25,7 @@ var answerLocaton = function(){
 // Get the modal
 var modalHS = document.getElementById("highScoreModal");
 var modalQuiz = document.getElementById("quizModal");
+var modalScore = document.getElementById("Submitscore");
 // Get the button that opens the modal
 var btn = document.getElementById("highScore");
 
@@ -99,25 +101,28 @@ var correctAnswer = function(event){
     document.getElementById('answerSection').innerHTML = "";
     startQuiz();
   } else {
-    document.getElementById('pokemonImage').setAttribute("src","");
-    document.getElementById('answerSection').innerHTML = "Congrat you completed the quiz! Here is your participation award.,<br><input type='input' name='HighScore' id ='HSI' />";
-    document.getElementById('submitBtn').innerHTML = "<button type='submit' id = 'submitHS'>Submit Score</button>"
-    submitBtn.addEventListener("click", function(event){
-      event.preventDefault();
-      var score = 11;
-      var initials = document.querySelector("input[name='HSI']").value;
-      // writes initials and score to array and stores in localstorage
-      PokeScore.push ({
-        name: initials,
-        score: score
-      });
-      localStorage.setItem("Pokemon", JSON.stringify(PokeScore));
-      modalQuiz.style.display = none;
-      window.location.reload(true);
-      
-    })
-  }
-}
+    
+    document.getElementById('score').innerHTML = "1 million";
+    modalQuiz.style.display = "none";
+    submitScore.style.display = "block";
+    
+  };
+};
+
+var highScore = function(){
+  var score = 11;
+  var initials = document.querySelector("input[name='HSI']").value;
+  console.log("Initials: " + initials);
+  // writes initials and score to array and stores in localstorage
+  PokeScore.push ({
+    name: initials,
+    score: score
+  });
+
+  localStorage.setItem("Pokemon", JSON.stringify(PokeScore));
+  // window.location.reload(true);
+  
+};
 
 startBtn.addEventListener("click", function(){
   startQuiz();
@@ -129,6 +134,8 @@ submitBtn.addEventListener("click", function(event){
   correctAnswer();
 })
 
-
-
+submitHs.addEventListener("click", function(event){
+  event.preventDefault;
+  highScore();
+});  
 

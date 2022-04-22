@@ -7,9 +7,11 @@ var count = numAnswers + 1;
 var pokemonId = 1;
 var sprite = 1;
 var pokeAnswer = document.querySelector("#answerSection");
+var displayScore = document.querySelector("#displayHighScore");
 var anwLoc = 0;
 var questionCount = 0;
 var PokeScore = [];
+var savedHighScores = [];
 
 // randomly get pokemon
 var getPokemon = function(){
@@ -34,7 +36,20 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
+  displayHighScores = "";
   modalHS.style.display = "block";
+  var displayHighScores = localStorage.getItem("Pokemon");
+   
+  // parse into array of objects
+  displayHighScores = JSON.parse(displayHighScores);
+
+  // loop through savedTasks array
+  for (var i = 0; i < displayHighScores.length; i++) {
+    // pass each task object into the `createTaskEl()` function
+    console.log(displayHighScores[i].name +", " + displayHighScores[i].score);
+    $(displayScore).append ("<p>" + displayHighScores[i].name +", " + displayHighScores[i].score + "</p>");
+  }
+
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -101,8 +116,8 @@ var correctAnswer = function(event){
     document.getElementById('answerSection').innerHTML = "";
     startQuiz();
   } else {
-    
-    document.getElementById('score').innerHTML = "1 million";
+    score = 15;
+    document.getElementById('score').innerHTML = score;
     modalQuiz.style.display = "none";
     submitScore.style.display = "block";
     
@@ -110,7 +125,7 @@ var correctAnswer = function(event){
 };
 
 var highScore = function(){
-  var score = 11;
+  
   var initials = document.querySelector("input[name='HSI']").value;
   console.log("Initials: " + initials);
   // writes initials and score to array and stores in localstorage
@@ -122,6 +137,25 @@ var highScore = function(){
   localStorage.setItem("Pokemon", JSON.stringify(PokeScore));
   // window.location.reload(true);
   
+};
+
+var loadHighScores = function(){
+  var savedHighScores = localStorage.getItem("Pokemon");
+  // if there are no tasks, set tasks to an empty array and return out of the function
+  if (!savedHighScores) {
+    return false;
+  }
+  console.log("High Scores found!");
+  // else, load up saved tasks
+
+  // parse into array of objects
+  savedHighScores = JSON.parse(savedHighScores);
+
+  // loop through savedTasks array
+  for (var i = 0; i < savedHighScores.length; i++) {
+    // pass each task object into the `createTaskEl()` function
+    PokeScore.push(savedHighScores[i]);
+  }
 };
 
 startBtn.addEventListener("click", function(){
@@ -139,3 +173,4 @@ submitHs.addEventListener("click", function(event){
   highScore();
 });  
 
+loadHighScores();

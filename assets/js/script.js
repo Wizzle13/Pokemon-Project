@@ -39,15 +39,14 @@ btn.onclick = function() {
   displayHighScores = "";
   modalHS.style.display = "block";
   var displayHighScores = localStorage.getItem("Pokemon");
-   
+  
   // parse into array of objects
   displayHighScores = JSON.parse(displayHighScores);
 
   // loop through savedTasks array
   for (var i = 0; i < displayHighScores.length; i++) {
     // pass each task object into the `createTaskEl()` function
-    console.log(displayHighScores[i].name +", " + displayHighScores[i].score);
-    $(displayScore).append ("<p>" + displayHighScores[i].name +", " + displayHighScores[i].score + "</p>");
+    $(displayScore).append ("<tr><td>" + displayHighScores[i].name +"</td><td>" + displayHighScores[i].score + "</td></tr>");
   }
 
 }

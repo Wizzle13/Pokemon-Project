@@ -5,11 +5,7 @@ For our first team project we have built a Pokemon Quiz.
 
 ## The Team
 ***
-Damon Spriggle
-
 Chris Burton
-
-Fuji Sin
 
 Oscar Hurtado
 
